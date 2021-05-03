@@ -7,7 +7,7 @@ before_script:
 
 branches:
   only:
-    - deployment
+    - dev
 
 env: DJANGO_SETTINGS_MODULE="settings.travis"
 
