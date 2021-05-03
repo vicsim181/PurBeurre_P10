@@ -196,5 +196,4 @@ Relations and dependencies can exist between those applications.
 
 ### Deployment
 
-This version of the application is currently hosted by [Heroku](https://www.heroku.com/).
-If you wish to use it as well, check the official documentation on their website.
+This version of the application is currently on a server hosted by DigitalOcean.
