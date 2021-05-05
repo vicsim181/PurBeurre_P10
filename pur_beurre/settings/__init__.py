@@ -12,7 +12,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent.parent
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +25,7 @@ SECRET_KEY = "8WLzBPZ~~+\rioi(t/V4:,ugD~gQPpk/G{3`wC@flo!D|K+EnH/kv<-u}V"
 # DEBUG = True
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.99.142.3']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'purbeurre',
-        'USER': 'vicsim',
-        'PASSWORD': 'Som@lie+11',
+        'USER': 'postgres',
+        'PASSWORD': 'japon+72-2',
         'HOST': '',
         'PORT': '5432',
     }
