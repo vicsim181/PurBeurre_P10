@@ -9,10 +9,10 @@ branches:
   only:
     - dev
 
-env: DJANGO_SETTINGS_MODULE="settings.travis"
+env: DJANGO_SETTINGS_MODULE=settings.travis
 
 services:
   - postgresql
 
 script:
-  - python3 manage.py test
+  - python manage.py test
