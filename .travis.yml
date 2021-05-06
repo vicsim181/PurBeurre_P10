@@ -20,4 +20,4 @@ services:
   - postgresql
 
 script:
-  - python manage.py test tests -v
+  - python manage.py test tests
