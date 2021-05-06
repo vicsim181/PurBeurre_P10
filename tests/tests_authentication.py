@@ -6,7 +6,6 @@ from application.authentication.forms import RegisterForm
 from unittest.mock import patch
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.firefox.webdriver import WebDriver
 
 
 firefox_options = webdriver.FirefoxOptions()
@@ -107,14 +106,14 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.browser = WebDriver()
+        cls.browser = webdriver.Firefox(options=firefox_options)
         cls.browser.implicitly_wait(10)
         cls.browser.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
-        cls.browser.quit()
         super().tearDownClass()
+        cls.browser.quit()
 
     def test_register(self):
         """

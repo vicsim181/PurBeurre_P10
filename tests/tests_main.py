@@ -318,14 +318,14 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.browser = WebDriver()
+        cls.browser = webdriver.Firefox(options=firefox_options)
         cls.browser.implicitly_wait(10)
         cls.browser.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
-        cls.browser.quit()
         super().tearDownClass()
+        cls.browser.quit()
 
     def test_looking_for_existing_product(self):
         """
