@@ -3,14 +3,18 @@ from django.db import IntegrityError, transaction
 from django.db.utils import DataError
 from django.test import TestCase, RequestFactory
 from urllib.error import HTTPError, URLError
-from .models import Product, Category, Store
-from .views import HomeView, ResultsView, ProductView, MentionsView, CategoriesView
+from application.main.models import Product, Category, Store
+from application.main.views import HomeView, ResultsView, ProductView, MentionsView, CategoriesView
 from django.core.management import call_command
 from io import StringIO
-from authentication.models import User
+from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium import webdriver
+# from selenium.webdriver.firefox.webdriver import WebDriver
 
+
+firefox_options = webdriver.FirefoxOptions()
+firefox_options.headless = True
 
 # Create your tests here.
 class ProductModelTests(TestCase):
@@ -27,11 +31,11 @@ class ProductModelTests(TestCase):
         target_1 = '5449000169327'  # Coca Cola zéro sans caféine
         target_2 = '3449860415703'  # Petits Bâtons de Berger Nature
         target_3 = '7622210450029'  # Prince - Biscuits fourrés goût lait choco
-        target_4 = '5000112558272'  # coca-cola
+        target_4 = '5449000267443'  # coca-cola vanille
         request_1 = 'zéro sans coca-cola caféine'
         request_2 = 'berger bâtons petits nature'
         request_3 = 'prince biscuit'
-        request_4 = 'coca cola'
+        request_4 = 'coca cola vanille'
         result_1, cat_1 = Product.retrieve_product(request_1)
         result_2, cat_2 = Product.retrieve_product(request_2)
         result_3, cat_3 = Product.retrieve_product(request_3)
@@ -45,7 +49,7 @@ class ProductModelTests(TestCase):
         print("self.assertEqual(result_3.code, '7622210450029')")
         self.assertEqual(result_3.code, target_3)
         print('assert 3 DONE')
-        print("self.assertEqual(result_4.code, '5000112558272')")
+        print("self.assertEqual(result_4.code, '5449000267443')")
         self.assertEqual(result_4.code, target_4)
         print('assert 4 DONE')
         product_test = Product.objects.get(code=target_3)
@@ -144,8 +148,8 @@ class DatabaseCommandsTests(TestCase):
         """
         print("\nTEST - Database Commands --> def db_delete_category()\n")
         delete_1 = 'fromage bleu'
-        delete_2 = 'yaourt'
-        product_target = 'soja greek style'
+        delete_2 = 'glace'
+        product_target = 'crème glacée vanille'
         out = StringIO()
         call_command('db_delete_category', delete_1, stdout=out)
         categories = Category.objects.all()
@@ -163,11 +167,12 @@ class DatabaseCommandsTests(TestCase):
         categories = Category.objects.all()
         remaining = [category.name for category in categories]
         assert_2 = ["fromage", "fromage de vache", "fromage de chevre", "fromage tome", "camembert", "roquefort",
-                    "livarot", "pont l'eveque", "glace", "glace chocolat", "glace vanille", "glace sorbet fruit",
-                    "biscuit", "biscuit chocolat", "biscuit beurre", "biscuit fruits", "soda", "soda cola", "limonade",
-                    "soda fruits", "charcuterie", "jambon blanc", "saucisson sec", "chorizo", "jambon serrano",
-                    "jambon parme", "jus de fruits", "jus d'orange", "jus de pomme", "jus multifruits", "jus de raisin"]
-        print("self.assert(categories.name remaining, all but 'fromage bleu', 'yaourt' and its subs)")
+                    "livarot", "pont l'eveque", "yaourt", "yaourt nature", "yaourt aux fruits", "yaourt végétal",
+                    "yaourt chocolat", "biscuit", "biscuit chocolat", "biscuit beurre", "biscuit fruits", "soda",
+                    "soda cola", "limonade", "soda fruits", "charcuterie", "jambon blanc", "saucisson sec", "chorizo",
+                    "jambon serrano", "jambon parme", "jus de fruits", "jus d'orange", "jus de pomme", "jus multifruits",
+                    "jus de raisin"]
+        print("self.assert(categories.name remaining, all but 'fromage bleu', 'glace' and its subs)")
         self.assertEqual(remaining, assert_2)
         print('Assert 2 Done')
         result_product, not_used = Product.retrieve_product(product_target)
@@ -313,20 +318,21 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.browser = WebDriver()
+        cls.browser = webdriver.Firefox(options=firefox_options)
         cls.browser.implicitly_wait(10)
+        cls.browser.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
-        cls.browser.quit()
         super().tearDownClass()
+        cls.browser.quit()
 
     def test_looking_for_existing_product(self):
         """
         User look for the product 'camembert au lait cru' and see if a product exists matching the request.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")
@@ -344,7 +350,7 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
         User look for the product 'pâtes au ketchup' and see if a product exists matching the request.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")

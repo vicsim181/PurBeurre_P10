@@ -1,4 +1,4 @@
-from . import *
+from .base import *
 
 
 SECRET_KEY = os.getenv('DJANGO_KEY')

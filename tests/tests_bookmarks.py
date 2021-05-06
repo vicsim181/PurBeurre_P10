@@ -1,16 +1,20 @@
-from .models import Substitution
-from .views import BookmarksView
-from authentication.models import User
+from application.bookmark.models import Substitution
+from application.bookmark.views import BookmarksView
+from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import RequestFactory, TestCase
-from main.models import Product
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+from application.main.models import Product
+# from selenium import webdriver
+# from selenium.webdriver.common.action_chains import ActionChains
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.firefox.webdriver import WebDriver
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
 
+
+# firefox_options = webdriver.FirefoxOptions()
+# firefox_options.headless = True
 
 # Create your tests here.
 class BookmarkTests(TestCase):
