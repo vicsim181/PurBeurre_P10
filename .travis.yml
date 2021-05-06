@@ -15,4 +15,6 @@ services:
   - postgresql
 
 script:
-  - python manage.py test application.main
+  - python manage.py test tests.tests_main
+  - python manage.py test tests.tests_authentication
+  - python manage.py test tests.tests_bookmarks
