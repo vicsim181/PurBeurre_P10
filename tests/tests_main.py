@@ -50,7 +50,7 @@ class ProductModelTests(TestCase):
         self.assertEqual(result_3.code, target_3)
         print('assert 3 DONE')
         print("self.assertEqual(result_4.code, '5000112558272')")
-        self.assertEqual(result_4.code, 56989)
+        self.assertEqual(result_4.code, target_4)
         print('assert 4 DONE')
         product_test = Product.objects.get(code=target_3)
         print("self.assertEqual(print(product_test), 'product: prince - biscuits fourrés goût lait choco')")

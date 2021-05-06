@@ -119,8 +119,9 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         """
         Test the registration process by creating a new user.
         """
+        print("\nTEST - SELENIUM --> TEST REGISTER\n")
         self.browser.get(self.live_server_url)
-        # self.browser.maximize_window()
+        self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         self.browser.find_element_by_id('register').click()
         self.browser.find_element_by_xpath('//*[@id="id_first_name"]').send_keys('essai')
@@ -138,6 +139,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         """
         Test the login process with an existing user.
         """
+        print("\nTEST - SELENIUM --> TEST LOGIN WHEN REGISTERED\n")
         self.browser.get(self.live_server_url)
         # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
@@ -154,6 +156,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         """
         Test the login process with an non existing user.
         """
+        print("\nTEST - SELENIUM --> TEST LOGIN WITHOUT REGISTERED\n")
         self.browser.get(self.live_server_url)
         # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
@@ -170,6 +173,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         """
         Test the login process and logout with an existing user.
         """
+        print("\nTEST - SELENIUM --> TEST LOGIN THEN LOGOUT\n")
         self.browser.get(self.live_server_url)
         # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
