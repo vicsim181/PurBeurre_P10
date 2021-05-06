@@ -2,17 +2,22 @@ language: python
 python:
   - '3.9'
 
-before_script:
-  - pip install -r requirements.txt
+# addons:
+#   firefox: latest
 
 branches:
   only:
     - dev
 
-env: DJANGO_SETTINGS_MODULE=pur_beurre.settings.travis
+before_script:
+  - pip install -r requirements.txt
+
+env:
+  global: 
+    - DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
 
 services:
   - postgresql
 
 script:
-  - python manage.py test tests
+  - python manage.py test tests -v
