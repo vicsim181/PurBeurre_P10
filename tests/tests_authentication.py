@@ -131,8 +131,8 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         self.browser.find_element_by_css_selector('#id_password2').send_keys('lala+89@')
         button = self.browser.find_element_by_xpath('//*[@id="page"]/div[2]/div/div/div/form/button')
         self.browser.execute_script("arguments[0].click();", button)
-        print("assert 'Vous êtes maintenant enregistré, bienvenue !' in self.browser.page_source")
-        assert 'Vous êtes maintenant enregistré, bienvenue !' in self.browser.page_source
+        print("assert 'Veuillez renseigner ce champ.' in self.browser.page_source")
+        assert 'Veuillez renseigner ce champ.' in self.browser.page_source
         print("ASSERT DONE")
 
     def test_login_when_registered(self):
