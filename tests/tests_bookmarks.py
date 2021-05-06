@@ -12,6 +12,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
+firefox_options = webdriver.FirefoxOptions()
+firefox_options.headless = True
+
 # Create your tests here.
 class BookmarkTests(TestCase):
     """

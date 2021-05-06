@@ -12,6 +12,9 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 
+firefox_options = webdriver.FirefoxOptions()
+firefox_options.headless = True
+
 # Create your tests here.
 class ProductModelTests(TestCase):
     """
