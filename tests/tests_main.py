@@ -144,8 +144,8 @@ class DatabaseCommandsTests(TestCase):
         """
         print("\nTEST - Database Commands --> def db_delete_category()\n")
         delete_1 = 'fromage bleu'
-        delete_2 = 'yaourt'
-        product_target = 'soja greek style'
+        delete_2 = 'glace'
+        product_target = 'crème glacée vanille'
         out = StringIO()
         call_command('db_delete_category', delete_1, stdout=out)
         categories = Category.objects.all()
@@ -163,11 +163,12 @@ class DatabaseCommandsTests(TestCase):
         categories = Category.objects.all()
         remaining = [category.name for category in categories]
         assert_2 = ["fromage", "fromage de vache", "fromage de chevre", "fromage tome", "camembert", "roquefort",
-                    "livarot", "pont l'eveque", "glace", "glace chocolat", "glace vanille", "glace sorbet fruit",
-                    "biscuit", "biscuit chocolat", "biscuit beurre", "biscuit fruits", "soda", "soda cola", "limonade",
-                    "soda fruits", "charcuterie", "jambon blanc", "saucisson sec", "chorizo", "jambon serrano",
-                    "jambon parme", "jus de fruits", "jus d'orange", "jus de pomme", "jus multifruits", "jus de raisin"]
-        print("self.assert(categories.name remaining, all but 'fromage bleu', 'yaourt' and its subs)")
+                    "livarot", "pont l'eveque", "yaourt", "yaourt nature", "yaourt aux fruits", "yaourt végétal",
+                    "yaourt chocolat", "biscuit", "biscuit chocolat", "biscuit beurre", "biscuit fruits", "soda",
+                    "soda cola", "limonade", "soda fruits", "charcuterie", "jambon blanc", "saucisson sec", "chorizo",
+                    "jambon serrano", "jambon parme", "jus de fruits", "jus d'orange", "jus de pomme", "jus multifruits",
+                    "jus de raisin"]
+        print("self.assert(categories.name remaining, all but 'fromage bleu', 'glace' and its subs)")
         self.assertEqual(remaining, assert_2)
         print('Assert 2 Done')
         result_product, not_used = Product.retrieve_product(product_target)
