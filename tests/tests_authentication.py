@@ -5,6 +5,7 @@ from application.authentication.views import RegisterView, ConsultAccountView
 from application.authentication.forms import RegisterForm
 from unittest.mock import patch
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium import webdriver
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 
@@ -108,6 +109,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         super().setUpClass()
         cls.browser = WebDriver()
         cls.browser.implicitly_wait(10)
+        cls.browser.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
@@ -119,7 +121,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         Test the registration process by creating a new user.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         self.browser.find_element_by_id('register').click()
         self.browser.find_element_by_xpath('//*[@id="id_first_name"]').send_keys('essai')
@@ -137,7 +139,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         Test the login process with an existing user.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")
@@ -153,7 +155,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         Test the login process with an non existing user.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("inconnu@gmail.fr")
@@ -169,7 +171,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         Test the login process and logout with an existing user.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")

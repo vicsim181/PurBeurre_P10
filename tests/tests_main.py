@@ -9,6 +9,7 @@ from django.core.management import call_command
 from io import StringIO
 from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium import webdriver
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 
@@ -319,6 +320,7 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
         super().setUpClass()
         cls.browser = WebDriver()
         cls.browser.implicitly_wait(10)
+        cls.browser.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
@@ -330,7 +332,7 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
         User look for the product 'camembert au lait cru' and see if a product exists matching the request.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")
@@ -348,7 +350,7 @@ class UserStoriesMainTest(StaticLiveServerTestCase):
         User look for the product 'pâtes au ketchup' and see if a product exists matching the request.
         """
         self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
         self.browser.find_element_by_id('log in').click()
         username_input = self.browser.find_element_by_css_selector('#id_username')
         username_input.send_keys("victor@gmail.fr")
