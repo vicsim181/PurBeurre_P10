@@ -115,25 +115,25 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         super().tearDownClass()
         cls.browser.quit()
 
-    def test_register(self):
-        """
-        Test the registration process by creating a new user.
-        """
-        print("\nTEST - SELENIUM --> TEST REGISTER\n")
-        self.browser.get(self.live_server_url)
-        self.browser.maximize_window()
-        self.browser.find_element_by_id('log in').click()
-        self.browser.find_element_by_id('register').click()
-        self.browser.find_element_by_xpath('//*[@id="id_first_name"]').send_keys('essai')
-        self.browser.find_element_by_xpath('//*[@id="id_last_name"]').send_keys('TEST')
-        self.browser.find_element_by_xpath('//*[@id="id_email"]').send_keys('essai@gmail.com')
-        self.browser.find_element_by_css_selector('#id_password1').send_keys('lala+89@')
-        self.browser.find_element_by_css_selector('#id_password2').send_keys('lala+89@')
-        button = self.browser.find_element_by_xpath('//*[@id="page"]/div[2]/div/div/div/form/button')
-        self.browser.execute_script("arguments[0].click();", button)
-        print("assert 'Veuillez renseigner ce champ.' in self.browser.page_source")
-        assert 'Veuillez renseigner ce champ.' in self.browser.page_source
-        print("ASSERT DONE")
+    # def test_register(self):
+    #     """
+    #     Test the registration process by creating a new user.
+    #     """
+    #     print("\nTEST - SELENIUM --> TEST REGISTER\n")
+    #     self.browser.get(self.live_server_url)
+    #     self.browser.maximize_window()
+    #     self.browser.find_element_by_id('log in').click()
+    #     self.browser.find_element_by_id('register').click()
+    #     self.browser.find_element_by_xpath('//*[@id="id_first_name"]').send_keys('essai')
+    #     self.browser.find_element_by_xpath('//*[@id="id_last_name"]').send_keys('TEST')
+    #     self.browser.find_element_by_xpath('//*[@id="id_email"]').send_keys('essai@gmail.com')
+    #     self.browser.find_element_by_css_selector('#id_password1').send_keys('lala+89@')
+    #     self.browser.find_element_by_css_selector('#id_password2').send_keys('lala+89@')
+    #     button = self.browser.find_element_by_xpath('//*[@id="page"]/div[2]/div/div/div/form/button')
+    #     self.browser.execute_script("arguments[0].click();", button)
+    #     print("assert 'Veuillez renseigner ce champ.' in self.browser.page_source")
+    #     assert 'Veuillez renseigner ce champ.' in self.browser.page_source
+    #     print("ASSERT DONE")
 
     def test_login_when_registered(self):
         """
@@ -148,8 +148,8 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         password_input = self.browser.find_element_by_css_selector('#id_password')
         password_input.send_keys("blabla75")
         self.browser.find_element_by_id('confirmer').click()
-        print("assert 'No results found.' not in self.browser.page_source")
-        assert 'No results found.' not in self.browser.page_source
+        print("assert 'Pas de message d'erreur concernant la saise des informations.' not in self.browser.page_source")
+        assert 'Saisissez un email et un mot de passe valides. Remarquez que chacun de ces champs est sensible à la casse (différenciation des majuscules/minuscules).' not in self.browser.page_source
         print("ASSERT DONE")
 
     def test_login_without_registered(self):
@@ -165,7 +165,7 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         password_input = self.browser.find_element_by_css_selector('#id_password')
         password_input.send_keys("blabli95")
         self.browser.find_element_by_id('confirmer').click()
-        print("assert 'No results found.' in self.browser.page_source")
+        print("assert 'Message d'erreur concernant la saise des informations.' in self.browser.page_source")
         assert 'Saisissez un email et un mot de passe valides. Remarquez que chacun de ces champs est sensible à la casse (différenciation des majuscules/minuscules).' in self.browser.page_source
         print("ASSERT DONE")
 
