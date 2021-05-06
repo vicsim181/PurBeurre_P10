@@ -10,7 +10,7 @@ from io import StringIO
 from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.firefox.webdriver import WebDriver
+# from selenium.webdriver.firefox.webdriver import WebDriver
 
 
 firefox_options = webdriver.FirefoxOptions()

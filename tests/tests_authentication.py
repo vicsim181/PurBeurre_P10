@@ -128,7 +128,8 @@ class UserStoriesAuthenticationTest(StaticLiveServerTestCase):
         self.browser.find_element_by_xpath('//*[@id="id_email"]').send_keys('essai@gmail.com')
         self.browser.find_element_by_css_selector('#id_password1').send_keys('lala+89@')
         self.browser.find_element_by_css_selector('#id_password2').send_keys('lala+89@')
-        self.browser.find_element_by_xpath('//*[@id="page"]/div[2]/div/div/div/form/button').click()
+        button = self.browser.find_element_by_xpath('//*[@id="page"]/div[2]/div/div/div/form/button')
+        self.browser.execute_script("arguments[0].click();", button)
         print("assert 'Vous êtes maintenant enregistré, bienvenue !' in self.browser.page_source")
         assert 'Vous êtes maintenant enregistré, bienvenue !' in self.browser.page_source
         print("ASSERT DONE")
