@@ -1,8 +1,8 @@
 import time
 from django.test import TestCase, RequestFactory
-from .models import User
-from .views import RegisterView, ConsultAccountView
-from .forms import RegisterForm
+from application.authentication.models import User
+from application.authentication.views import RegisterView, ConsultAccountView
+from application.authentication.forms import RegisterForm
 from unittest.mock import patch
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
@@ -65,7 +65,7 @@ class TestRegisterView(TestCase):
         self.assertEqual(response.status_code, 200)
         print('Assert Done')
 
-    @patch('authentication.views.RegisterView.form_class', autospec=RegisterForm)
+    @patch('application.authentication.views.RegisterView.form_class', autospec=RegisterForm)
     def test_registerview_post(self, mocked_form_class):
         mocked_form_class.is_valid.return_value = True
         request = self.factory.post('register/', data={})

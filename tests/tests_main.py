@@ -3,11 +3,11 @@ from django.db import IntegrityError, transaction
 from django.db.utils import DataError
 from django.test import TestCase, RequestFactory
 from urllib.error import HTTPError, URLError
-from .models import Product, Category, Store
-from .views import HomeView, ResultsView, ProductView, MentionsView, CategoriesView
+from application.main.models import Product, Category, Store
+from application.main.views import HomeView, ResultsView, ProductView, MentionsView, CategoriesView
 from django.core.management import call_command
 from io import StringIO
-from authentication.models import User
+from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
 

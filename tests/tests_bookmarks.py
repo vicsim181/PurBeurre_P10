@@ -1,9 +1,9 @@
-from .models import Substitution
-from .views import BookmarksView
-from authentication.models import User
+from application.bookmark.models import Substitution
+from application.bookmark.views import BookmarksView
+from application.authentication.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import RequestFactory, TestCase
-from main.models import Product
+from application.main.models import Product
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.webdriver import WebDriver
