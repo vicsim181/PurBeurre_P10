@@ -31,9 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'application.main.apps.MainConfig',
-    'application.bookmark.apps.BookmarkConfig',
-    'application.authentication.apps.AuthenticationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'application.main.apps.MainConfig',
+    'application.bookmark.apps.BookmarkConfig',
+    'application.authentication.apps.AuthenticationConfig',
 ]
 
 AUTH_USER_MODEL = "authentication.User"  # changes the built-in user model to ours
