@@ -1,6 +1,10 @@
 from .base import *
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 SECRET_KEY = os.getenv('DJANGO_KEY')
 DEBUG = False
