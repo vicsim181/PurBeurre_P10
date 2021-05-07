@@ -17,13 +17,10 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 
-def trigger_error(request):
-    division_by_zero = 1 / 0
 
 urlpatterns = [
     path('', include('application.main.urls'), name="home"),
     url('admin/', admin.site.urls),
     url('user/', include('application.authentication.urls'), name="user"),
     url('bookmark/', include('application.bookmark.urls'), name='bookmarks'),
-    path('sentry-debug/', trigger_error),
 ]
