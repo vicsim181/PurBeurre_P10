@@ -11,10 +11,7 @@ import os
 from pathlib import Path
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-from dotenv import load_dotenv
 
-
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -91,8 +88,8 @@ LOGIN_REDIRECT_URL = "home"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRESQL_DB_NAME'),
-        'USER': os.getenv('POSTGRESQL_USER'),
+        'NAME': 'purbeurre',
+        'USER': 'postgres',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '5432',
