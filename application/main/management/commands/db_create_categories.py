@@ -30,7 +30,6 @@ class Command(BaseCommand):
         Function creating a category in the database.
         """
         try:
-            # print(category_name)
             category = Category(name=category_name)
             category.save()
         except category.DoesNotExist:  # In case the value passed in category_name is empty
