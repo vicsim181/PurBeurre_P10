@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from application.main.models import Category, Product, Store, History
+from pathlib import Path
 
 
 class Command(BaseCommand):
@@ -38,12 +39,13 @@ class Command(BaseCommand):
         Depending on the category (main one or sub one) the page_size will vary.
         It then calls the extract_data() function to perform the extraction.
         """
+        dir = Path(__file__).resolve().parent.parent.parent
         try:
             last_page = History.objects.latest('date')
             page = last_page.page_number + 1
         except ObjectDoesNotExist:
             page = 1
-        with open('PurBeurre_P10/application/main/management/commands/settings.json', 'r') as settings:
+        with open(str(dir) + '/management/commands/settings.json', 'r') as settings:
             self.data = json.load(settings)
         categories_settings = self.data['categories']
         self.url = "https://fr.openfoodfacts.org/cgi/search.pl?json=1"
